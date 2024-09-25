@@ -1,12 +1,21 @@
 ﻿using API.Infrastructure;
 using AutoMapper;
 using Common.DTOs;
+using DAL.Ef_Core;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 
 namespace API.Extensions
 {
     public static class IServiceCollectionExtension
     {
+
+        internal static void RegisterServices(this IServiceCollection services, IConfiguration configuration)
+        {
+            services.AddScoped<DbContext>(sp => sp.GetRequiredService<AppDbContext>());
+            services.RegisterIOptions(configuration);
+        }
+
         internal static void RegisterCors(this IServiceCollection services, IConfiguration configuration)
         {
             var settings = configuration.GetSection(nameof(SettingsDto.Cors)).Get<SettingsDto.Cors>();
@@ -23,6 +32,10 @@ namespace API.Extensions
             {
                 cfg.AddProfile(new BLL.Infrastructure.AutoMapperProfile());
             }).CreateMapper());
+        }
+        internal static void RegisterConnectionString(this IServiceCollection services, IConfiguration configuration)
+        {
+            services.AddDbContext<AppDbContext>(x => x.UseSqlServer(configuration.GetConnectionString("Default")));
         }
 
         internal static void RegisterIOptions(this IServiceCollection services, IConfiguration configuration)

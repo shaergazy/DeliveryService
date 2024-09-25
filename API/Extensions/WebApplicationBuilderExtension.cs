@@ -62,28 +62,30 @@ namespace API.Extensions
             services.AddMvc();
             services.AddSignalR();
             services.AddHttpContextAccessor();
+            services.RegisterConnectionString(configuration);
+            services.RegisterServices(configuration);
 
             services.RegisterIOptions(configuration);
             services.RegisterSwagger();
             services.ConfigMapper();
-            //services.AddAuthentication("Bearer")
-            //    .AddJwtBearer("Bearer", options =>
-            //    {
-            //        options.Authority = configuration["IdentityServer:Authority"];
-            //        options.TokenValidationParameters = new TokenValidationParameters
-            //        {
-            //            ValidateAudience = false
-            //        };
-            //    });
+            services.AddAuthentication("Bearer")
+                .AddJwtBearer("Bearer", options =>
+                {
+                    options.Authority = configuration["IdentityServer:Authority"];
+                    options.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        ValidateAudience = false
+                    };
+                });
 
-            //services.AddAuthorization(options =>
-            //{
-            //    options.AddPolicy("ApiScope", policy =>
-            //    {
-            //        policy.RequireAuthenticatedUser();
-            //        policy.RequireClaim("scope", "api1");
-            //    });
-            //});
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("ApiScope", policy =>
+                {
+                    policy.RequireAuthenticatedUser();
+                    policy.RequireClaim("scope", "api1");
+                });
+            });
         }
 
         internal static WebApplication Configure(this WebApplicationBuilder builder)

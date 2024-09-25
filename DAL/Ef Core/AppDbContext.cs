@@ -3,6 +3,7 @@ using DAL.Models.Users;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using System.Reflection.Emit;
 
 namespace DAL.Ef_Core
 {
@@ -52,6 +53,32 @@ namespace DAL.Ef_Core
                 .WithMany()
                 .HasForeignKey(oi => oi.ProductId)
                 .OnDelete(DeleteBehavior.Restrict);
+
+            builder.Entity<OrderItem>()
+                    .Property(o => o.Price)
+                    .HasPrecision(18, 2);
+
+            builder.Entity<Order>()
+                    .Property(o => o.TotalAmount)
+                    .HasPrecision(18, 2);
+
+            builder.Entity<Order>()
+                    .Property(o => o.DeliveryFee)
+                    .HasPrecision(18, 2);
+
+            builder.Entity<Payment>()
+                    .Property(p => p.Amount)
+                    .HasPrecision(18, 2);
+
+            builder.Entity<Product>()
+                    .Property(p => p.Price)
+                    .HasPrecision(18, 2);
+
+            builder.Entity<Payment>()
+                    .HasOne(p => p.PaymentMethod)
+                    .WithMany()
+                    .HasForeignKey(p => p.PaymentMethodId)
+                    .OnDelete(DeleteBehavior.NoAction);
 
             builder.ApplyConfigurationsFromAssembly(typeof(AppDbContext).Assembly);
         }

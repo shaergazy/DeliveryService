@@ -1,9 +1,13 @@
 ﻿using API.Infrastructure;
 using AutoMapper;
+using BLL.Services.Implementations;
+using BLL.Services.Interfaces;
 using Common.DTOs;
 using DAL.Ef_Core;
+using Data.Repositories.RepositoryInterfaces;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
+using Repositories;
 
 namespace API.Extensions
 {
@@ -14,6 +18,11 @@ namespace API.Extensions
         {
             services.AddScoped<DbContext>(sp => sp.GetRequiredService<AppDbContext>());
             services.RegisterIOptions(configuration);
+            services.AddScoped(typeof(IGenericRepository<,>), typeof(GenericRepository<,>));
+            services.AddScoped(typeof(IUnitOfWork<,>), typeof(UnitOfWork<,>));
+
+            services.AddTransient(typeof(IGenericService<,,,,,>), typeof(GenericService<,,,,,>));
+            services.AddTransient<ICategoryService, CategoryService>();
         }
 
         internal static void RegisterCors(this IServiceCollection services, IConfiguration configuration)

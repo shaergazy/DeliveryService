@@ -23,6 +23,7 @@ namespace API.Extensions
 
             services.AddTransient(typeof(IGenericService<,,,,,>), typeof(GenericService<,,,,,>));
             services.AddTransient<ICategoryService, CategoryService>();
+            services.AddTransient<IProductService, ProductService>();
         }
 
         internal static void RegisterCors(this IServiceCollection services, IConfiguration configuration)

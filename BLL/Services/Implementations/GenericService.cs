@@ -42,7 +42,7 @@ namespace BLL.Services.Implementations
 
         public async Task<TEntity> CreateAsync(TAddDto dto)
         {
-            var entity = await BuildEntityForCreate(dto);
+            var entity = await BuildEntityForCreateAsync(dto);
             await _unitOfWork.Repository.AddAsync(entity);
             await _unitOfWork.SaveChangesAsync();
             _logger.LogInformation("Created entity with ID: {Id}", entity.GetType().GetProperty("Id").GetValue(entity, null));
@@ -70,7 +70,7 @@ namespace BLL.Services.Implementations
             var entity = await _unitOfWork.Repository.GetByIdAsync(id);
             return entity;
         }
-        public virtual async Task<TEntity> BuildEntityForCreate(TAddDto dto)
+        public virtual async Task<TEntity> BuildEntityForCreateAsync(TAddDto dto)
         {
             return _mapper.Map<TEntity>(dto);
         }

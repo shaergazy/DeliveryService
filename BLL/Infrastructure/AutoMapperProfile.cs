@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using BLL.DTO.Category;
+using BLL.DTO.Product;
 using DAL.Models;
 
 namespace BLL.Infrastructure
@@ -12,6 +13,11 @@ namespace BLL.Infrastructure
             CreateMap<Category, EditCategoryDto>().ReverseMap();
             CreateMap<Category, ListCategoryDto>().ReverseMap();
             CreateMap<Category, GetCategoryDto>().ReverseMap();
+
+            CreateMap<Product, AddProductDto>().ReverseMap();
+            CreateMap<Product, EditProductDto>().ReverseMap();
+            CreateMap<Product, ListProductDto>().ReverseMap();
+            CreateMap<Product, GetProductDto>().ReverseMap();
         }
     }
 }

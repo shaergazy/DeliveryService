@@ -1,7 +1,5 @@
-﻿using API.Infrastructure;
-using BLL.DTO.Product;
+﻿using BLL.DTO;
 using BLL.Services.Interfaces;
-using Common.Enums;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 

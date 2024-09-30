@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
-using BLL.DTO.Category;
-using BLL.DTO.Product;
+using BLL.DTO;
 using DAL.Models;
 
 namespace BLL.Infrastructure

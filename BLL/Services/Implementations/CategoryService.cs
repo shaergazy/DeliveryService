@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using BLL.DTO.Category;
+using BLL.DTO;
 using BLL.Services.Interfaces;
 using DAL.Models;
 using Data.Repositories.RepositoryInterfaces;

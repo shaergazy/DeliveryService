@@ -1,4 +1,4 @@
-﻿using BLL.DTO.Category;
+﻿using BLL.DTO;
 using DAL.Models;
 
 namespace BLL.Services.Interfaces

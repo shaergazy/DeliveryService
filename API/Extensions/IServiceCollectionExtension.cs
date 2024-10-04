@@ -24,6 +24,8 @@ namespace API.Extensions
             services.AddTransient(typeof(IGenericService<,,,,,>), typeof(GenericService<,,,,,>));
             services.AddTransient<ICategoryService, CategoryService>();
             services.AddTransient<IProductService, ProductService>();
+            services.AddTransient<IAddressService, AddressService>();
+            services.AddTransient<IPaymentMethodService, PaymentMethodService>();
         }
 
         internal static void RegisterCors(this IServiceCollection services, IConfiguration configuration)
@@ -61,7 +63,7 @@ namespace API.Extensions
             {
                 x.SwaggerDoc("v1", new OpenApiInfo
                 {
-                    Title = "Kinopoisk API",
+                    Title = "DeliveryService API",
                     Version = "v1",
                 });
                 x.DescribeAllParametersInCamelCase();

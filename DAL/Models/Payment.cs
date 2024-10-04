@@ -1,4 +1,6 @@
-﻿namespace DAL.Models
+﻿using DAL.Enums;
+
+namespace DAL.Models
 {
     public class Payment
     {
@@ -8,7 +10,7 @@
         public int PaymentMethodId { get; set; }
         public PaymentMethod PaymentMethod { get; set; }
         public decimal Amount { get; set; }
-        public string PaymentStatus { get; set; }
+        public PaymentStatus PaymentStatus { get; set; }
         public DateTime PaymentDate { get; set; } = DateTime.Now;
     }
 }

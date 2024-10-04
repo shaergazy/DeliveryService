@@ -16,17 +16,17 @@ namespace API.Controllers
     [ApiController]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-    public class ProductsController : ControllerBase
+    public class AddressesController : ControllerBase
     {
-        private readonly IProductService _service;
+        private readonly IAddressService _service;
 
-        public ProductsController(IProductService service)
+        public AddressesController(IAddressService service)
         {
             _service = service;
         }
 
         /// <summary>
-        /// Add Product
+        /// Add Address
         /// </summary>
         /// <param name="dto"></param>
         /// <returns></returns>
@@ -34,41 +34,41 @@ namespace API.Controllers
         [HttpPost]
         //[AuthorizeRoles(RoleType.Admin)]
         [ProducesResponseType(typeof(int), 200)]
-        public async Task<int> Create(AddProductDto dto)
+        public async Task<int> Create([FromBody] AddAddressDto dto)
         {
             if (dto == null) throw new ArgumentNullException(nameof(dto));
-            var Product = await _service.CreateAsync(dto);
-            return Product.Id;
+            var Address = await _service.CreateAsync(dto);
+            return Address.Id;
         }
 
         /// <summary>
-        /// GET all Products
+        /// GET all Addresss
         /// </summary>
         /// <returns></returns>
         [HttpGet]
         [AllowAnonymous]
-        [ProducesResponseType(typeof(List<ListProductDto>), 200)]
+        [ProducesResponseType(typeof(List<ListAddressDto>), 200)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public  List<ListProductDto> GetAll()
+        public async Task<List<ListAddressDto>> GetAll()
         {
             return _service.GetAll().ToList();
         }
 
         /// <summary>
-        /// Edit Product
+        /// Edit Address
         /// </summary>
         /// <param name="dto"></param>
         /// <returns></returns>
         [HttpPut]
         //[AuthorizeRoles(RoleType.Admin)]
         [ProducesResponseType(204)]
-        public async Task Edit([FromForm] EditProductDto dto)
+        public async Task Edit(EditAddressDto dto)
         {
             await _service.UpdateAsync(dto);
         }
 
         /// <summary>
-        /// Delete Product
+        /// Delete Address
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>

@@ -17,6 +17,13 @@ namespace BLL.Infrastructure
             CreateMap<Product, EditProductDto>().ReverseMap();
             CreateMap<Product, ListProductDto>().ReverseMap();
             CreateMap<Product, GetProductDto>().ReverseMap();
+
+            CreateMap<Address, AddAddressDto>().ReverseMap();
+            CreateMap<Address, EditAddressDto>().ReverseMap();
+            CreateMap<Address, ListAddressDto>().ReverseMap();
+            CreateMap<Address, GetAddressDto>().ReverseMap();
+
+            CreateMap<PaymentMethod, PaymentMethodDto>().ReverseMap();
         }
     }
 }

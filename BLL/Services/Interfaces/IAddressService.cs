@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using BLL.DTO;
+using DAL.Models;
 
 namespace BLL.Services.Interfaces
 {
-    internal interface IAddressService
+    public interface IAddressService : IGenericService<Address, int, ListAddressDto, AddAddressDto, EditAddressDto, GetAddressDto>
     {
     }
 }

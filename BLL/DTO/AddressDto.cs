@@ -9,6 +9,14 @@
         public string? Country { get; set; } = "";
     }
 
+    public class AddAddressDto : BaseAddressDto { }
+
+    public class EditAddressDto : IdHasAddressDto { }
+
+    public class GetAddressDto : IdHasAddressDto { }
+
+    public class ListAddressDto : IdHasAddressDto { }
+
     public class IdHasAddressDto
     {
         public int Id { get; set; }

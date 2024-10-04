@@ -31,7 +31,7 @@ namespace API.Extensions
             app.UseSwagger();
             app.UseSwaggerUI(x =>
             {
-                x.SwaggerEndpoint("/swagger/v1/swagger.json", "KFG api");
+                x.SwaggerEndpoint("/swagger/v1/swagger.json", "DeliveryService API");
                 x.RoutePrefix = string.Empty;
                 x.DefaultModelExpandDepth(3);
                 x.DefaultModelRendering(ModelRendering.Example);
